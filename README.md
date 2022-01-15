@@ -10,5 +10,9 @@ Develop an online store.
 ## Team Members
 
 * Nolan Bastien 40179166
+* Agnès Croteau 26720927
 
 ## Technologies
+
+* Git
+* Bootstrap (likely)
