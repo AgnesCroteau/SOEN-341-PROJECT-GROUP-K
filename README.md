@@ -1,4 +1,5 @@
-# SOEN-341-PROJECT-GROUP-K
+# GROUPE_K-soen341project2022
+
 This is our SOEN 341 project (Winter 2022, ConU, Group K)
 
 ## Objective
