@@ -12,8 +12,10 @@ Develop an online store.
 
 * Nolan Bastien 40179166
 * Agnès Croteau 26720927
+* Joe El-Khoury 40173108
 
 ## Technologies
 
 * Git
 * Bootstrap (likely)
+* NodeJS (?) 
