@@ -14,9 +14,11 @@ Develop an online store.
 * Agnès Croteau 26720927
 * Joe El-Khoury 40173108
 * Huy-Long Tran 40076313
+* Francis Castagna Narcisse 40097641
 
 ## Technologies
 
 * Git
 * Bootstrap (likely)
 * NodeJS (?)
+* React, Django?
