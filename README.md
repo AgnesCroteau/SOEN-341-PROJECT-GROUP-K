@@ -10,12 +10,13 @@ Develop an online store.
 
 ## Team Members
 
-* Nolan Bastien 40179166
-* Agnès Croteau 26720927
-* Joe El-Khoury 40173108
+- Nolan Bastien 40179166
+- Agnès Croteau 26720927
+- Joe El-Khoury 40173108
+- Huy-Long Tran 40076313
 
 ## Technologies
 
-* Git
-* Bootstrap (likely)
-* NodeJS (?) 
+- Git
+- Bootstrap (likely)
+- NodeJS (?)
