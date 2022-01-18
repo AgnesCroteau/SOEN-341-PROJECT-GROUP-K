@@ -15,6 +15,7 @@ Develop an online store.
 * Joe El-Khoury 40173108
 * Huy-Long Tran 40076313
 * Francis Castagna Narcisse 40097641
+* Kelly Acoca 27531389
 
 ## Technologies
 
