@@ -16,6 +16,7 @@ Develop an online store.
 * Huy-Long Tran 40076313
 * Francis Castagna Narcisse 40097641
 * Kelly Acoca 27531389
+* Emilie Rosenthal-Bustamante 40134421
 
 ## Technologies
 
