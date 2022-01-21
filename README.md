@@ -10,13 +10,13 @@ Develop an online store.
 
 ## Team Members
 
-* Nolan Bastien 40179166
-* Agnès Croteau 26720927
-* Joe El-Khoury 40173108
-* Huy-Long Tran 40076313
-* Francis Castagna Narcisse 40097641
-* Kelly Acoca 27531389
-* Emilie Rosenthal-Bustamante 40134421
+* CEO : Nolan Bastien 40179166  
+* Researcher 1 : Agnès Croteau 26720927  
+* _________: Joe El-Khoury 40173108
+* _________: Huy-Long Tran 40076313
+* _________: Francis Castagna Narcisse 40097641
+* _________: Kelly Acoca 27531389
+* Programmer 1 : Emilie Rosenthal-Bustamante 40134421
 
 ## Technologies
 
