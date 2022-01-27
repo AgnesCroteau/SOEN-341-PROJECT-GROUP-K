@@ -15,7 +15,7 @@ Develop an online store.
 * _________: Joe El-Khoury 40173108
 * _________: Huy-Long Tran 40076313
 * _________: Francis Castagna Narcisse 40097641
-* _________: Kelly Acoca 27531389
+* Programmer 2/Technical Writer: Kelly Acoca 27531389 and Github username: KellyA
 * Programmer 1 : Emilie Rosenthal-Bustamante 40134421
 
 ## Technologies
