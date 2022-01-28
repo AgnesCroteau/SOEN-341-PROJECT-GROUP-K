@@ -10,7 +10,7 @@ The objective of this project is to give a user the opportunity to create a shop
 
 ## Team Members
 
-* CEO : Nolan Bastien 40179166  
+* Scrum Master : Nolan Bastien 40179166  
 * Researcher 1 : Agnès Croteau 26720927  
 * _________: Joe El-Khoury 40173108
 * _________: Huy-Long Tran 40076313
