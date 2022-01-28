@@ -4,7 +4,7 @@ This is our SOEN 341 project (Winter 2022, ConU, Group K)
 
 ## Objective
 
-Develop an online store.
+The objective of this project is to give a user the opportunity to create a shopping cart based on different categories. 
 
 ## Project
 
