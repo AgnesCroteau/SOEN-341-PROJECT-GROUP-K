@@ -16,7 +16,7 @@ The objective of this project is to give a user the opportunity to create a shop
 * _________: Huy-Long Tran 40076313
 * _________: Francis Castagna Narcisse 40097641
 * Programmer 2/Technical Writer: Kelly Acoca 27531389 and Github username: KellyA
-* Programmer 1 : Emilie Rosenthal-Bustamante 40134421
+* Front-End Programmer : Emilie Rosenthal-Bustamante (emrb9) 40134421
 
 ## Technologies
 
