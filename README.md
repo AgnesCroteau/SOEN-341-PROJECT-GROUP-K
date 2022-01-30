@@ -11,10 +11,10 @@ The objective of this project is to give a user the opportunity to create a shop
 ## Team Members
 
 * Scrum Master : Nolan Bastien 40179166  
-* Researcher 1 : Agnès Croteau 26720927  
-* _________: Joe El-Khoury 40173108
-* _________: Huy-Long Tran 40076313
-* _________: Francis Castagna Narcisse 40097641
+* Researcher & Programmer : Agnès Croteau 26720927  
+* Programmer: Joe El-Khoury 40173108
+* Programmer: Huy-Long Tran 40076313
+* Programmer: Francis Castagna Narcisse 40097641
 * Programmer 2/Technical Writer: Kelly Acoca 27531389 and Github username: KellyA
 * Front-End Programmer : Emilie Rosenthal-Bustamante (emrb9) 40134421
 
