@@ -14,7 +14,7 @@ The objective of this project is to give a user the opportunity to create a shop
 * Researcher & Programmer : Agnès Croteau 26720927  
 * Programmer: Joe El-Khoury 40173108
 * Programmer: Huy-Long Tran 40076313
-* Programmer: Francis Castagna Narcisse 40097641
+* Backend Programmer/Web designer: Francis Castagna Narcisse 40097641
 * Programmer 2/Technical Writer: Kelly Acoca 27531389 and Github username: KellyA
 * Front-End Programmer : Emilie Rosenthal-Bustamante (emrb9) 40134421
 
@@ -22,5 +22,5 @@ The objective of this project is to give a user the opportunity to create a shop
 
 * Git
 * Bootstrap (likely)
-* NodeJS (?)
-* React, Django?
+* NodeJS
+* React
