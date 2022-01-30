@@ -4,7 +4,7 @@ This is our SOEN 341 project (Winter 2022, ConU, Group K)
 
 ## Objective
 
-The objective of this project is to give a user the opportunity to create a shopping cart based on different categories. 
+The objective of this project is to provide a user an online shopping experience with the opportunity to create a shopping cart based on different categories. 
 
 ## Project
 
@@ -15,7 +15,7 @@ The objective of this project is to give a user the opportunity to create a shop
 * Programmer: Joe El-Khoury 40173108
 * Programmer: Huy-Long Tran 40076313
 * Backend Programmer/Web designer: Francis Castagna Narcisse 40097641
-* Programmer 2/Technical Writer: Kelly Acoca 27531389 and Github username: KellyA
+* Programmer/Technical Writer: Kelly Acoca 27531389 and Github username: KellyA
 * Front-End Programmer : Emilie Rosenthal-Bustamante (emrb9) 40134421
 
 ## Technologies
