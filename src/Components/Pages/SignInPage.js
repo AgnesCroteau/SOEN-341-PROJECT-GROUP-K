@@ -40,7 +40,6 @@ function SignInPage() {
                             <Form.Control type="password" placeholder="Re-enter your password" />
                         </Form.Group>
 
-
                         <Button variant="primary" type="submit">
                             Create An Account
                         </Button>
