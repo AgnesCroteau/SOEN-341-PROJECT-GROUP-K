@@ -11,7 +11,7 @@ function Navigation() {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/">Inventory</Nav.Link>
           <Nav.Link href="/signup">Sign Up</Nav.Link>
-          <Nav.Link href="/">Log In</Nav.Link>
+          <Nav.Link href="/login">Log In</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
