@@ -21,6 +21,7 @@ The objective of this project is to provide a user an online shopping experience
 ## Technologies
 
 * Git
-* Bootstrap (likely)
+* Figma
+* Bootstrap
 * NodeJS
 * React
