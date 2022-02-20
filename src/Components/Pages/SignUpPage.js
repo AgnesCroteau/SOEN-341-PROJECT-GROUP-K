@@ -2,7 +2,7 @@ import { Button, Card, Container, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 
-function SignInPage() {
+function SignUpPage() {
 
     let navigate = useNavigate();
 
@@ -46,10 +46,8 @@ function SignInPage() {
                     </Form>
                 </Card.Body>
             </Card>
-
         </Container>
-
     );
 }
 
-export default SignInPage;
+export default SignUpPage;
