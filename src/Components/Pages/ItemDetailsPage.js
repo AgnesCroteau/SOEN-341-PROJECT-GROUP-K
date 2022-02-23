@@ -8,8 +8,8 @@ function ItemDetailsPage(props) {
             <Navigation />
             <Container>
                 <div className="row col-auto flex-wrap main-content">
-                    <Image className="col-sm-6 item-image align-items-center" src={props.img} responsive />
-                    <div className="description col-sm-6">
+                    <Image className="col-sm-3 item-image align-items-center" src={props.img} responsive />
+                    <div className="description col-sm-6"> 
                         <h2 id="BookName">{props.title}</h2>
                         <hr />
                         <h6>{props.description}</h6>

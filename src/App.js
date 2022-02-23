@@ -9,48 +9,49 @@ const dummyData = [
     id: "1",
     title: "Isaac Asimov: The Complete Stories, Vol. 1",
     description:
-      "Isaac Asimov best work In a world of robots how can we keep on keeping on",
-    price: 68.9,
+      "Isaac Asimov best work In a world of robots how can we keep on keeping on.",
+    price: 9.99,
     img: "isaac_asimov.jpeg",
   },
   {
     id: "2",
-    title: "Isaac Asimov: The Complete Stories, Vol. 1",
+    title: "The Little Prince",
     description:
-      "Isaac Asimov best work In a world of robots how can we keep on keeping on",
-    price: 68.9,
-    img: "isaac_asimov.jpeg",
+      "The Little Prince is a novella by French aristocrat, writer, and military aviator Antoine de Saint-Exupéry.",
+    price: 12.99,
+    img: "le_petit_prince.jpg",
   },
   {
     id: "3",
-    title: "Isaac Asimov: The Complete Stories, Vol. 1",
+    title: "The Devil Wears Prada",
     description:
-      "Isaac Asimov best work In a world of robots how can we keep on keeping on",
-    price: 68.9,
-    img: "isaac_asimov.jpeg",
+      "The Devil Wears Prada is a 2003 novel by Lauren Weisberger about a young woman who is hired as a personal assistant to a powerful fashion magazine editor.",
+    price: 12.99,
+    img: "the_devil_wears_prada.jpg",
   },
   {
     id: "4",
-    title: "Isaac Asimov: The Complete Stories, Vol. 1",
+    title: "Harry Potter and the Philosopher's Stone",
     description:
-      "Isaac Asimov best work In a world of robots how can we keep on keeping on",
-    price: 68.9,
-    img: "isaac_asimov.jpeg",
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive.",
+    price: 26.99,
+    img: "harry_potter_and_philosopher_stone.jpg",
   },
   {
     id: "5",
-    title: "Isaac Asimov: The Complete Stories, Vol. 1",
+    title: "The Silent Patient",
     description:
-      "Isaac Asimov best work In a world of robots how can we keep on keeping on",
-    price: 68.9,
-    img: "isaac_asimov.jpeg",
+      "The Silent Patient is a 2019 psychological thriller novel written by British–Cypriot author Alex Michaelides.",
+      
+    price: 23.99,
+    img: "the_silent_patient.jpg",
   },
   {
     id: "6",
     title: "1984",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-    price: 19.99,
-    img: "1984first.jpg",
+    price: 7.99,
+    img: "1984.jpg",
   },
 ];
 
