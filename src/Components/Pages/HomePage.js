@@ -1,12 +1,11 @@
 import Navigation from "../Layout/Navigation";
-import ItemCard from "../ItemCard";
+import ItemShelf from "../ItemShelf"
 
-function HomePage() {
+function HomePage(props) {
   return (
     <div>
       <Navigation />
-      <ItemCard />
-      <div>This is the home page. </div>
+      <ItemShelf items={props.items}/>
     </div>
   );
 }
