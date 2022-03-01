@@ -34,6 +34,7 @@ function SignUpPage() {
                             <Form.Select>
                                 <option>Customer</option>
                                 <option>Seller</option>
+                                <option>Admin</option>
                             </Form.Select>
                         </Form.Group>
 
