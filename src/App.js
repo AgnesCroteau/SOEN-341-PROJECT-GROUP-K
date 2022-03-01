@@ -3,6 +3,7 @@ import HomePage from "./Components/Pages/HomePage";
 import SignUpPage from "./Components/Pages/SignUpPage";
 import LoginPage from "./Components/Pages/LoginPage";
 import ItemDetailsPage from "./Components/Pages/ItemDetailsPage";
+import ManageProfilePage from "./Components/Pages/ManageProfilePage";
 
 const dummyData = [
   {
@@ -63,6 +64,7 @@ function App() {
           <Route path="/" element={<HomePage items={dummyData} />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/editprofile" element={<ManageProfilePage/>}/>
           {dummyData.map((item) => 
             <Route path={'/item' + item.id} element={<ItemDetailsPage {...item} />} />
           )}

@@ -8,8 +8,8 @@ function SignUpPage() {
     return (
         <Container fluid style={{ display: 'flex', justifyContent: 'center' }}>
             
-            <h1 onClick={() => {navigate('/')}} style={{marginTop: '4%'}}>BOREAL.ca</h1> 
-            <Card style={{ width: '18rem', position: 'absolute', top: '15%' }}>
+            <h1 onClick={() => {navigate('/')}} style={{marginTop: '4%', fontWeight:"bold"}}>BOREAL.ca</h1> 
+            <Card style={{ width: '18rem', position: 'absolute', top: '15%', outline: "solid" }}>
             
                 <Card.Body>
                     <Card.Title style={{ textAlign: "center" }}>Create Account</Card.Title>
