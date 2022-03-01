@@ -1,4 +1,4 @@
-import {Card, Container, Button, Dropdown, DropdownButton, Form } from 'react-bootstrap';
+import { Card, Container, Button, Dropdown, DropdownButton, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
