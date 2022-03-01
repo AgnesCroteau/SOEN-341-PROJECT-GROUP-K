@@ -21,7 +21,7 @@ function SignUpPage() {
                         </Form.Group>
 
                         <Form.Group className="mb-0" style= {{fontWeight:"bold", paddingBottom: "25px"}} controlId="formBasicEmail">
-                            <Form.Label>Password:</Form.Label>
+                            <Form.Label>Password</Form.Label>
                             <Form.Control type="name" placeholder="Enter Your Password" />
                         </Form.Group>
 
