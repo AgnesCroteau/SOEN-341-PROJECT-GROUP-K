@@ -1,0 +1,17 @@
+.cart-title {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.price {
+    text-align: right;
+    text-size-adjust: 60%;
+}
+
+.item-image {
+    width: 30%;
+}
+
+th {
+    width: 70%;
+}
