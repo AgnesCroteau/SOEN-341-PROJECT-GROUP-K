@@ -1,7 +1,6 @@
 import { Button, Card, Container, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
-
 function SignUpPage() {
 
     let navigate = useNavigate();
@@ -26,23 +25,23 @@ function SignUpPage() {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Verify Email</Form.Label>
-                            <Form.Control type="name" placeholder="Re-enter Your Email" />
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Create Your Password</Form.Label>
                             <Form.Control type="password" placeholder="Please Enter a password" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Verify Password</Form.Label>
-                            <Form.Control type="password" placeholder="Re-enter your password" />
+                        <Form.Group className="mb-3">
+                            <Form.Label>Select Account Type</Form.Label>
+                            <Form.Select>
+                                <option>Customer</option>
+                                <option>Seller</option>
+                                <option>Admin</option>
+                            </Form.Select>
                         </Form.Group>
 
-                        <Button variant="primary" type="submit">
-                            Create An Account
-                        </Button>
+                        <div className='d-grid'>
+                            <Button variant="primary" type="submit">Create Account</Button>
+                        </div>
+
                     </Form>
                 </Card.Body>
             </Card>
