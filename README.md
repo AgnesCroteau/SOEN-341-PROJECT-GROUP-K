@@ -40,3 +40,19 @@ Boreal is a web-based store that offers a large selection of the most influentia
 * React
 
 
+## Setup
+- from the root folder ./SOEN-341-PROJECT-GROUP-K, do:
+  - `npm i`
+- from the root folder ./SOEN-341-PROJECT-GROUP-K, do:
+  - `cd backend`
+  - `npm i`
+- from the root folder ./SOEN-341-PROJECT-GROUP-K, do:
+  - `cd frontend`
+  - `npm i`
+
+# Running
+- from the root folder ./SOEN-341-PROJECT-GROUP-K, do:
+  - `npm run dev`
+
+
+
