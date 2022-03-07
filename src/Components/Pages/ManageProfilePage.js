@@ -13,7 +13,7 @@ function ManageProfilePage() {
             <h1 onClick={() => {navigate('/')}} style={{textAlign: "center", marginTop: '3%', fontWeight:"bold"}}>BOREAL.ca</h1>
             
             <Card style={{ width: '18rem', position: 'absolute', top: '15%', outline: "solid" }}>
-            <h3 style={{ textAlign: "center" }}>Edit Account Information</h3>
+            <h3 style={{ marginTop: '5%', textAlign: "center" }}>Edit Account Information</h3>
                 <Card.Body>
                     
                     <Form>
@@ -42,10 +42,12 @@ function ManageProfilePage() {
                             </Form.Select>
                         </Form.Group>
                        
-
-                        <Button variant="primary" type="submit">
-                            Edit Information
-                        </Button>
+                        <div className='d-grid'>
+                            <Button variant="primary" type="submit">
+                                Edit Information
+                            </Button>   
+                        </div>
+                        
                     </Form>
                 </Card.Body>
             </Card>
