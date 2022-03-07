@@ -5,6 +5,7 @@ import HomePage from "./Components/Pages/HomePage";
 import SignUpPage from "./Components/Pages/SignUpPage";
 import LoginPage from "./Components/Pages/LoginPage";
 import ItemDetailsPage from "./Components/Pages/ItemDetailsPage";
+import ManageProfilePage from "./Components/Pages/ManageProfilePage";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={ allProducts ? <HomePage items={allProducts} /> : <Spinner animation="border" variant="primary" /> } />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/editprofile" element={<ManageProfilePage/>}/>
           {allProducts && allProducts.map((item) => 
             <Route path={'/item' + item.id} element={<ItemDetailsPage {...item} />} />
           )}
