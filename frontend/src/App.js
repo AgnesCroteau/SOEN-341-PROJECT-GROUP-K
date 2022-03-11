@@ -7,6 +7,7 @@ import LoginPage from "./Components/Pages/LoginPage";
 import ItemDetailsPage from "./Components/Pages/ItemDetailsPage";
 import ManageProfilePage from "./Components/Pages/ManageProfilePage";
 import ShoppingCartPage from "./Components/Pages/ShoppingCartPage";
+import CustomerOrdersPage from "./Components/Pages/CustomerOrdersPage";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/editprofile" element={<ManageProfilePage/>}/>
           <Route path="/cartpage" element={<ShoppingCartPage/>} />
+          <Route path="/myorders" element={<CustomerOrdersPage />}/>
           {allProducts && allProducts.map((item) => 
             <Route path={'/item' + item.id} element={<ItemDetailsPage {...item} />} />
           )}
