@@ -9,7 +9,8 @@
 }
 
 .item-image {
-    width: 30%;
+    width: 20%;
+    min-width: 190px;
 }
 
 th {
