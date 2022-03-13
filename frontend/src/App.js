@@ -30,7 +30,7 @@ function App() {
           <Route path="/cartpage" element={<ShoppingCartPage/>} />
           <Route path="/myorders" element={<CustomerOrdersPage />}/>
           {allProducts && allProducts.map((item) => 
-            <Route path={'/item' + item.id} element={<ItemDetailsPage {...item} />} />
+            <Route path={'/item' + item._id} element={<ItemDetailsPage {...item} />} />
           )}
         </Routes>
       </BrowserRouter>
