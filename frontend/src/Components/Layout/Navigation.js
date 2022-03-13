@@ -14,6 +14,13 @@ function Navigation() {
           <Nav.Link href="/editprofile">Edit Profile</Nav.Link>
           <Nav.Link href="/myorders">My Orders</Nav.Link>
         </Nav>
+
+        <Nav>
+          <Nav.Link href="/order">Orders</Nav.Link>
+          <Nav.Link href="/editprofile">Manage My Profile</Nav.Link>
+          <Nav.Link href="/Cart">Cart</Nav.Link>
+          <Nav.Link href="/logout">Log Out</Nav.Link>
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
