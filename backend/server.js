@@ -69,9 +69,6 @@ async function updateUserProfileToDb(uri_, user_info) {
   }
 }
 
-
-let products;
-
 app.post('/storeUserAccountInfo', function(req, res) {
   res.set({
     'Access-Control-Allow-Origin': '*'
@@ -85,9 +82,6 @@ app.post('/updateUserAccountInfo', function(req, res) {
   });
   updateUserProfileToDb(uri, req.body).then(response => {console.log(response); res.send(response)});
 });
-
-getProductsFromDatabase(uri).then(response => { products = response;});
-
 
 async function writeOrderInDB(order) {
   if (order === undefined) return "Error. Order is not defined.";
