@@ -27,8 +27,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/editprofile" element={<ManageProfilePage/>}/>
           <Route path="/myorders" element={<CustomerOrdersPage />}/>
-          {allProducts && allProducts.map((item) => 
-            <Route path={'/item' + item.id} element={<ItemDetailsPage {...item} />} />
+          {allProducts && allProducts.map((item) =>
+            <Route path={'/item' + item._id} element={<ItemDetailsPage {...item} />} />
           )}
         </Routes>
       </BrowserRouter>

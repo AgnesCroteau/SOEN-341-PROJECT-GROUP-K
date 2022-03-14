@@ -16,14 +16,14 @@ function ItemCard(props) {
       <Card
         style={{ width: "18rem", margin: "10%" }}
         onDoubleClick={() => {
-          navigate("/item" + props.id);
+          navigate("/item" + props._id);
         }}
       >
         <Card.Img variant="top" src={props.img} />
         <Card.Body>
           <Card.Title
             onClick={() => {
-              navigate("/item" + props.id);
+              navigate("/item" + props._id);
             }}
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
