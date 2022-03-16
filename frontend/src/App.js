@@ -10,6 +10,8 @@ import ShoppingCartPage from "./Components/Pages/ShoppingCartPage";
 import CustomerOrdersPage from "./Components/Pages/CustomerOrdersPage";
 
 function App() {
+  
+  const [cart, setCart] = useState([]);
 
   const [allProducts, setAllProducts] = useState(null);
 
