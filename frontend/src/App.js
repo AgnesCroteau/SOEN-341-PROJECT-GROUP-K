@@ -31,7 +31,7 @@ function App() {
           <Route path="/editprofile" element={<ManageProfilePage/>}/>
           <Route path="/cartpage" element={<ShoppingCartPage/>} />
           <Route path="/myorders" element={<CustomerOrdersPage />}/>
-          {allProducts && allProducts.map((item) => 
+          {allProducts && allProducts.map((item) =>
             <Route path={'/item' + item._id} element={<ItemDetailsPage {...item} />} />
           )}
         </Routes>
