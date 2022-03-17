@@ -69,6 +69,23 @@ async function updateUserProfileToDb(uri_, user_info) {
   }
 }
 
+async function validateUserProfileToDb(uri_, user_info) {
+  try {
+  const client = await  MongoClient.connect(uri_, {
+    useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+  });
+  const db = client.db("boreal_db");
+  var users_tb = db.collection("user_accounts_info");
+  const response = await users_tb.findOne({"email": user_info.email, "password": user_info.password},{
+  })
+  client.close();
+  return response;
+} catch(error) {
+  client.close();
+  console.log(error);
+}
+}
+
 app.post('/storeUserAccountInfo', function(req, res) {
   res.set({
     'Access-Control-Allow-Origin': '*'
@@ -81,6 +98,13 @@ app.post('/updateUserAccountInfo', function(req, res) {
     'Access-Control-Allow-Origin': '*'
   });
   updateUserProfileToDb(uri, req.body).then(response => {console.log(response); res.send(response)});
+});
+
+app.post('/verifyUserAccountInfo', function(req, res) {
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  })
+  validateUserProfileToDb(uri, req.body).then(response => {console.log(response); res.send(response)});
 });
 
 async function writeOrderInDB(order) {
