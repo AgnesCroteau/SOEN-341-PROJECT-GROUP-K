@@ -126,6 +126,22 @@ async function writeOrderInDB(order) {
   return requestStatus;
 }
 
+async function retrieveOrderInDb(uri_, user_info) {
+  try {
+  const client = await  MongoClient.connect(uri_, {
+    useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+  });
+  const db = client.db("boreal_db");
+  var users_tb = db.collection("orders");
+  const response = await users_tb.findOne({"_id": user_info._id},{
+  })
+  client.close();
+  return response;
+} catch(error) {
+  client.close();
+  console.log(error);
+}
+}
 // API endpoints as functions
 app.get("/getAllProducts", (req, res) => {
   res.set({ "Access-Control-Allow-Origin": "*" });
@@ -147,6 +163,13 @@ app.post("/sendOrder", (req, res) => {
     console.log();
     res.send(response);
   });
+});
+
+app.post('/retrieveOrder', function(req, res) {
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  })
+  retrieveOrderInDb(uri, req.body).then(response => {console.log(response); res.send(response)});
 });
 
 app.listen(3001, () => console.log('Listening on port 3001...'));
