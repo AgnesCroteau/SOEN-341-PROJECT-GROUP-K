@@ -24,7 +24,22 @@ async function getProductsFromDatabase() {
   client.close();
   return allproducts;
 }
-
+async function retrieveOrderInDb(uri_, user_info) {
+  try {
+  const client = await  MongoClient.connect(uri_, {
+    useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+  });
+  const db = client.db("boreal_db");
+  var orders_tb = db.collection("orders");
+  const response = await orders_tb.find({"customer_id": user_info.customer_id},{
+  }).toArray();
+  client.close();
+  return response;
+} catch(error) {
+  client.close();
+  console.log(error);
+}
+}
 async function writeNewUserProfileToDb(uri_, user_info) {
   try {
     const client = await  MongoClient.connect(uri_, {
@@ -107,6 +122,13 @@ app.post('/verifyUserAccountInfo', function(req, res) {
   validateUserProfileToDb(uri, req.body).then(response => {console.log(response); res.send(response)});
 });
 
+app.get("/retrieveOrder", (req, res) => {
+  res.set({ "Access-Control-Allow-Origin": "*" });
+
+  retrieveOrderInDb(uri, req.body).then((response) => {
+    res.send(response);
+  });
+});
 async function writeOrderInDB(order) {
   if (order === undefined) return "Error. Order is not defined.";
   const client = await MongoClient.connect(uri, {
