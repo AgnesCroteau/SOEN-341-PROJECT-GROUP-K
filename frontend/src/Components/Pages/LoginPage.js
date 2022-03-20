@@ -1,8 +1,36 @@
+import { useState } from 'react';
 import { Button, Card, Container, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
 
-function SignUpPage() {
+function LoginPage() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loggedIn, setLoggedIn] = useState(true); // Even though it is not necessarily true the first time
+
+    const handleEmailChange = (email) => {
+        setEmail(email);
+        console.log(email);
+    }
+
+    const handlePasswordChange = (password) => {
+        setPassword(password);
+        console.log(password);
+    }
+
+    const handleSubmit = () => {
+        fetch('http://localhost:3001/verifyUserAccountInfo/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        }).then(response => response.headers.get("Content-Length") > 0 && response.json())
+            .then((data) => data ? navigate('/') : setLoggedIn(false));
+    }
 
     let navigate = useNavigate();
 
@@ -17,31 +45,32 @@ function SignUpPage() {
                     <Form>
                         <Form.Group className="mb-3" style= {{fontWeight:"bold"}} controlId="formBasicEmail">
                             <Form.Label>E-mail address</Form.Label>
-                            <Form.Control type="name" placeholder="Enter Your E-mail" />
+                            <Form.Control type="name" placeholder="Enter Your E-mail" onChange={(e) => handleEmailChange(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-0" style= {{fontWeight:"bold", paddingBottom: "25px"}} controlId="formBasicEmail">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="name" placeholder="Enter Your Password" />
+                            <Form.Control type="password" placeholder="Enter Your Password" onChange={(e) => handlePasswordChange(e.target.value)} />
                         </Form.Group>
-
-                        <Button className= "mb-3" style={{width: "100%"}} variant="primary" type="submit">
-                            Continue
-                        </Button>
-
-                        
                     </Form>
+
+                    {!loggedIn  && <p style={{color: 'red'}}>Wrong email or password. Please try again.</p>}
+
+                    <Button className= "mb-3" style={{width: "100%"}} variant="primary" type="submit" onClick={handleSubmit}>
+                            Continue
+                        </Button> 
                 </Card.Body>
+                
             </Card>
             <h2></h2>
             <Form.Group className="mb-0" style= {{textAlign: "center", fontWeight:"bold"}} controlId="formBasicEmail">
                 <Form.Label>New to BOREAL?</Form.Label>
             </Form.Group>
-            <Button variant="primary" style={{width: "400px", marginRight: "auto", marginLeft: "auto"}} type="submit">
+            <Button variant="primary" style={{width: "400px", marginRight: "auto", marginLeft: "auto"}} type="submit" onClick={() => {navigate('/signup')}}>
                 Create your BOREAL account
             </Button>
         </Container>
     );
 }
 
-export default SignUpPage;
+export default LoginPage;
