@@ -1,8 +1,17 @@
 import { Button, Image, Container } from 'react-bootstrap';
 import Navigation from '../Layout/Navigation';
-import '../Page Styles/ItemDetailsPage.css'
+import '../Page Styles/ItemDetailsPage.css';
+import { useDispatchCart } from '../Cart';
 
 function ItemDetailsPage(props) {
+    
+    const dispatch = useDispatchCart();
+
+    const addToCart = (item) => {
+        console.log(item);
+        dispatch({type: "ADD", item});
+    }
+
     return (
         <>
             <Navigation />
@@ -15,7 +24,8 @@ function ItemDetailsPage(props) {
                         <h6>{props.description}</h6>
                         <hr />
                         <h3>${props.price}</h3>
-                        <Button variant="warning">Add to Cart</Button>
+                        <Button 
+                        variant="warning" onClick = {() => addToCart(props.item)}>Add to Cart</Button>
                     </div>
                 </div>
             </Container>

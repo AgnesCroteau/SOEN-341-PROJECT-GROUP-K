@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useDispatchCart } from './Cart';
 
 
 
 function ItemCard(props) {
+
   const [isHovering, setHover] = useState(false);
+
+  const dispatch = useDispatchCart();
+
+    const addToCart = (item) => {
+        console.log(item);
+        dispatch({type: "ADD", item});
+    }
 
   let navigate = useNavigate();
 
@@ -38,8 +47,8 @@ function ItemCard(props) {
           <Button
             class="addToCartBtn"
             variant="primary"
-            onClick={() => handleAddProduct(props)}
             style={{ marginTop: "10px" }}
+            onClick = {() => addToCart(props)}
           >
             Add to cart
           </Button>
