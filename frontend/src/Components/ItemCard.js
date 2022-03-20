@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Button, Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { cart, setCart } from "../App";
-import { addToCart } from "./Cart";
+
 
 
 function ItemCard(props) {
@@ -39,7 +38,7 @@ function ItemCard(props) {
           <Button
             class="addToCartBtn"
             variant="primary"
-            onClick={() => addToCart(props)}
+            onClick={() => handleAddProduct(props)}
             style={{ marginTop: "10px" }}
           >
             Add to cart

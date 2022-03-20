@@ -12,8 +12,32 @@ import CustomerOrdersPage from "./Components/Pages/CustomerOrdersPage";
 function App() {
   
   const [cart, setCart] = useState([]);
-
   const [allProducts, setAllProducts] = useState(null);
+
+  // Handle adding and removing items to cart...
+  // Still need to implement and test it...
+
+  const handleAddProduct = (product) => {
+    const itemExists = cart.find((item) => item._id === product._id);
+    if (itemExists) {
+        setCart(
+            cart.map((item) =>
+                item._id === product._id ? { ...itemExists, quantity: itemExists.quantity + 1 } : item)
+        );
+    } else {
+        setCart([...cart, { ...product, quantity: 1 }]);
+    }
+  }
+
+  const handleRemoveProduct = (product) => {
+    const itemExists = cart.find((item) => item._id === product._id);
+    if (itemExists.quantity === 1) {
+        setCart(cart.filter((item) => item._id !== product._id));
+    } else {
+        setCart(setCart.map((item => item._id === product._id ? { ...itemExists, quantity: itemExists.quantity - 1 }
+            : item)))
+    }
+  }
 
   useEffect(() => {
       fetch('http://localhost:3001/getAllProducts')
