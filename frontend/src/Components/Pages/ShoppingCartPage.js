@@ -17,6 +17,7 @@ function ShoppingCartPage(props) {
                             <th className="price"><h4>Price</h4></th>
                         </tr>
                         {
+                            // Each item from cart is displayed into the shopping cart page
                             props.list.map((item) => {
                                 return (
                                     <tr>
