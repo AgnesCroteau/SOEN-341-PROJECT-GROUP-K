@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import { Button, Card, Container, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import { useDispatchUser } from '../UserContext';
 
 
 function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(true); // Even though it is not necessarily true the first time
+
+    const dispatchUser = useDispatchUser();
+    const setUser = (user) => {
+        console.log("Dispatch user");
+        dispatchUser({type: "SET", user})
+    }
 
     const handleEmailChange = (email) => {
         setEmail(email);
@@ -29,7 +36,13 @@ function LoginPage() {
                 password
             })
         }).then(response => response.headers.get("Content-Length") > 0 && response.json())
-            .then((data) => data ? navigate('/') : setLoggedIn(false));
+            .then((data) => {
+                if (data) {
+                    setUser(data);
+                    navigate('/');
+                } 
+                else setLoggedIn(false) 
+            });
     }
 
     let navigate = useNavigate();
