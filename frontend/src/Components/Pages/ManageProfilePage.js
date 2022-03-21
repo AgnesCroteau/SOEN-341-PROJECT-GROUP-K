@@ -1,8 +1,43 @@
+import { useState } from 'react';
 import { Button, Card, Container, Form, Stack } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../UserContext';
 
 
 function ManageProfilePage() {
+    const currentUserInfo = useUser();
+    const [name, setName] = useState(currentUserInfo.full_name);
+    const [email, setEmail] = useState(currentUserInfo.email);
+    const [password, setPassword] = useState(currentUserInfo.password);
+    const [address, setAddress] = useState(currentUserInfo.home_address);
+    const [phone, setPhone] = useState(currentUserInfo.phone_number);
+    const [gender, setGender] = useState(currentUserInfo.gender);
+    const [accountType, setAccountType] = useState(currentUserInfo.account_type);
+
+    const handleEmailChange = (email) => {
+        setEmail(email);
+        console.log(email);
+    }
+
+    const saveChanges = () => {
+        fetch('http://localhost:3001/updateUserAccountInfo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password,
+                address,
+                phone,
+                gender,
+                accountType
+              })
+        }).then(response => response.headers.get("Content-Length") > 0 && response.json())
+            .then((data) => console.log(data));
+    }
+
 
     let navigate = useNavigate();
 
@@ -22,12 +57,12 @@ function ManageProfilePage() {
                         <Form.Group className="mb-2" controlId="formBasicName">
                             <Form.Label>Full Name</Form.Label>
 
-                            <Form.Control type="name" placeholder="Kelly Acoca" />
+                            <Form.Control type="name" placeholder={currentUserInfo.full_name} />
                         </Form.Group>
 
                         <Form.Group className="mb-2" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="name" placeholder="Kelly.acoca@gmail.com" />
+                            <Form.Control type="name" placeholder={email} onChange={(e) => handleEmailChange(e.target.value)}/>
                         </Form.Group>
 
 
@@ -38,12 +73,12 @@ function ManageProfilePage() {
 
                         <Form.Group className="mb-2" controlId="formBasicAddress">
                             <Form.Label>Your Home Address</Form.Label>
-                            <Form.Control type="name" placeholder="5825 Ave Eldridge, H4W2E3, Cote-Saint-Luc, Quebec, Canada" />
+                            <Form.Control type="name" placeholder={currentUserInfo.home_address} />
                         </Form.Group>
 
                         <Form.Group className="mb-2" controlId="formBasicNumber">
                             <Form.Label>Your Phone Number</Form.Label>
-                            <Form.Control type="name" placeholder="514-550-8326" />
+                            <Form.Control type="name" placeholder={currentUserInfo.phone_number} />
                         </Form.Group>
 
                         <Form.Group className="mb-2" controlId="formBasicGender">
@@ -67,15 +102,15 @@ function ManageProfilePage() {
                        
                         <Form.Group className="mb-4" controlId="formBasicChange">
                         </Form.Group>
-
-                        <div className='d-grid'>
-                            <Button variant="primary" type="submit">
+                    </Form>
+                    <div className='d-grid'>
+                            <Button variant="primary" type="submit" onClick={saveChanges}>
                                 Save Changes
                             </Button>   
                         </div>
-                    </Form>
                 </Card.Body>
             </Card>
+            <button onClick={() => console.log(currentUserInfo) }>hello</button>
         </Container>
     );
 }
