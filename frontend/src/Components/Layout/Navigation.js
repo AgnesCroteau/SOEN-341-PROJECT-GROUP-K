@@ -7,10 +7,7 @@ import { useUser } from "../UserContext";
 
 function Navigation() {
 
-  const userState = useUser();  
-  const userDispatch = () => {
-    dispatchEvent({type: "RESET"})
-  }
+  const userState = useUser();
 
   const items = useCart();
 
@@ -28,7 +25,7 @@ function Navigation() {
           {userState &&  <Nav.Link as={Link} to="/editprofile">Manage My Profile</Nav.Link> }
           {!userState &&  <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link> }
           {!userState && <Nav.Link as={Link} to="/login">Log In</Nav.Link> }
-          {userState && <Nav.Link onClick={userDispatch}>Log Out</Nav.Link> }
+          {userState && <Nav.Link href="/">Log Out</Nav.Link> }
         </Nav>
       </Navbar.Collapse>
     </Navbar>
