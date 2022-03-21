@@ -5,13 +5,16 @@ import { useDispatchCart } from '../Cart';
 
 function ItemDetailsPage(props) {
     
+    // Handle adding items to cart using dispatch (state modifier)
     const dispatch = useDispatchCart();
-
     const addToCart = (item) => {
         console.log(item);
         dispatch({type: "ADD", item});
     }
 
+    /* Displaying the item passed as a parameter in the function
+        allowing different items to be displayed.
+    */
     return (
         <>
             <Navigation />

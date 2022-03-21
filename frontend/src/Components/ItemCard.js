@@ -9,12 +9,12 @@ function ItemCard(props) {
 
   const [isHovering, setHover] = useState(false);
 
+  // Handle adding items to cart using dispatch (state modifier)
   const dispatch = useDispatchCart();
-
-    const addToCart = (item) => {
-        console.log(item);
-        dispatch({type: "ADD", item});
-    }
+  const addToCart = (item) => {
+      console.log(item);
+      dispatch({type: "ADD", item});
+  }
 
   let navigate = useNavigate();
 
