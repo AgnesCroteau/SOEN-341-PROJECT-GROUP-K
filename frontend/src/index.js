@@ -1,13 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { CartProvider } from './Components/Cart.js';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { CartProvider } from "./Components/Cart.js";
+import { UserProvider } from "./Components/UserContext";
 
 ReactDOM.render(
-<CartProvider>
-    <App />
-</CartProvider>,
-document.getElementById('root')
+  <UserProvider>
+    <CartProvider>
+      <App />
+    </CartProvider>
+  </UserProvider>,
+  document.getElementById("root")
 );
-
