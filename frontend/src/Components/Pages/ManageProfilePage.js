@@ -125,7 +125,6 @@ function ManageProfilePage() {
                         </div>
                 </Card.Body>
             </Card>
-            <button onClick={() => console.log(handleSaveChanges) }>hello</button>
         </Container>
     );
 }
