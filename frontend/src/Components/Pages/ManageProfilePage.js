@@ -131,7 +131,3 @@ function ManageProfilePage() {
 }
 
 export default ManageProfilePage;
-
-}
-
-export default ManageProfilePage;
