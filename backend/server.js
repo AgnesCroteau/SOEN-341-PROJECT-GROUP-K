@@ -4,7 +4,10 @@ const uri = "mongodb+srv://dev:hCoYCjUTGFKEC2IK@boreal.vaa1q.mongodb.net/boreal_
 const express = require('express');
 const cors = require('cors')
 const app = express();
-const { response } = require('express');
+const cors = require('cors');
+
+// use it before all route definitions
+app.use(cors({origin: 'http://localhost:3000'}));
 
 app.use(express.json());
 app.use(cors());
@@ -26,7 +29,22 @@ async function getProductsFromDatabase() {
   client.close();
   return allproducts;
 }
-
+async function retrieveOrderInDb(uri_, user_info) {
+  try {
+  const client = await  MongoClient.connect(uri_, {
+    useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+  });
+  const db = client.db("boreal_db");
+  var orders_tb = db.collection("orders");
+  const response = await orders_tb.find({"customer_id": user_info.customer_id},{
+  }).toArray();
+  client.close();
+  return response;
+} catch(error) {
+  client.close();
+  console.log(error);
+}
+}
 async function writeNewUserProfileToDb(uri_, user_info) {
   try {
     const client = await  MongoClient.connect(uri_, {
@@ -110,6 +128,13 @@ app.post('/verifyUserAccountInfo', function(req, res) {
   validateUserProfileToDb(uri, req.body).then(response => {console.log(response); res.send(response)});
 });
 
+app.get("/retrieveOrder", (req, res) => {
+  res.set({ "Access-Control-Allow-Origin": "*" });
+
+  retrieveOrderInDb(uri, req.body).then((response) => {
+    res.send(response);
+  });
+});
 async function writeOrderInDB(order) {
   if (order === undefined) return "Error. Order is not defined.";
   const client = await MongoClient.connect(uri, {
