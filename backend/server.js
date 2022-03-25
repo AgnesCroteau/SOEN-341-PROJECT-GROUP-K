@@ -2,6 +2,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://dev:hCoYCjUTGFKEC2IK@boreal.vaa1q.mongodb.net/boreal_db?retryWrites=true&w=majority";
 
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const cors = require('cors');
 
@@ -9,6 +10,7 @@ const cors = require('cors');
 app.use(cors({origin: 'http://localhost:3000'}));
 
 app.use(express.json());
+app.use(cors());
 
 process.on("uncaughtException", function (err) {
   console.log(err);
@@ -105,6 +107,7 @@ async function validateUserProfileToDb(uri_, user_info) {
 }
 
 app.post('/storeUserAccountInfo', function(req, res) {
+  console.log(req.body);
   res.set({
     'Access-Control-Allow-Origin': '*'
   })
