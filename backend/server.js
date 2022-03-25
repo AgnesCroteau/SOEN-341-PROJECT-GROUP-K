@@ -4,7 +4,6 @@ const uri = "mongodb+srv://dev:hCoYCjUTGFKEC2IK@boreal.vaa1q.mongodb.net/boreal_
 const express = require('express');
 const cors = require('cors')
 const app = express();
-const cors = require('cors');
 
 // use it before all route definitions
 app.use(cors({origin: 'http://localhost:3000'}));
