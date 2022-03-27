@@ -175,7 +175,7 @@ app.get("/retrieveProducts", (req, res) => {
 });
 
 //Create an API endpoint to add a product to the database
-app.post('/getAllProducts', function(req, res) {
+app.post('/addProduct', function(req, res) {
   console.log(req.body);
   res.set({
     'Access-Control-Allow-Origin': '*'
