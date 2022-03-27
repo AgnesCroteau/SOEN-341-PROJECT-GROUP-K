@@ -123,7 +123,30 @@ async function writeNewSellerProductToDb(uri_, seller_info) {
   }
   
 }
-
+//Create an API endpoint to modify a product to the database
+async function updateSellerProductToDb(uri_, seller_info) {
+  try {
+    const client = await  MongoClient.connect(uri_, {
+      useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+    });
+    const db = client.db("boreal_db");
+    var products_tb = db.collection("products");
+    const response = await products_tb.updateOne({"_id": seller_info._id},{
+      $set: {
+        //Seller is able to modify title, description, price and img ONLY. 
+        "title": seller_info.title,
+        "description": seller_info.description,
+        "price": seller_info.price,
+        "img": seller_info.img,
+      }
+    })
+    client.close();
+    return response;
+  } catch(error) {
+    client.close();
+    console.log(error);
+  }
+}
 //Create API endpoint to see all items I have posted as a seller (input: seller_id; output: seller's products)
 async function retrieveProductsInDb(uri_, seller_info) {
   try {
@@ -150,7 +173,6 @@ async function deleteProductInDb(uri_, seller_info) {
     const db = client.db("boreal_db");
     var products_tb = db.collection("products");
     const response = await products_tb.deleteOne({"_id": seller_info._id},{
-
     })
     client.close();
     return response;
@@ -159,6 +181,13 @@ async function deleteProductInDb(uri_, seller_info) {
     console.log(error);
   }
 }
+
+app.post('/updateProduct', function(req, res) {
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  });
+  updateSellerProductToDb(uri, req.body).then(response => {console.log(response); res.send(response)});
+});
 
 app.delete('/deleteProduct', function(req, res) {
   console.log(req.body);
