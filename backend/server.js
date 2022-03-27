@@ -141,7 +141,7 @@ async function retrieveProductsInDb(uri_, seller_info) {
   console.log(error);
 }
 }
-
+//Delete seller product using _id (SKU) of product
 async function deleteProductInDb(uri_, seller_info) {
   try {
     const client = await  MongoClient.connect(uri_, {
