@@ -142,7 +142,31 @@ async function retrieveProductsInDb(uri_, seller_info) {
 }
 }
 
+async function deleteProductInDb(uri_, seller_info) {
+  try {
+    const client = await  MongoClient.connect(uri_, {
+      useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+    });
+    const db = client.db("boreal_db");
+    var products_tb = db.collection("products");
+    const response = await products_tb.deleteOne({"_id": seller_info._id},{
 
+    })
+    client.close();
+    return response;
+  } catch(error) {
+    client.close();
+    console.log(error);
+  }
+}
+
+app.delete('/deleteProduct', function(req, res) {
+  console.log(req.body);
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  })
+  deleteProductInDb(uri, req.body).then(response => {console.log(response); res.send(response)});
+});
 
 app.post('/storeUserAccountInfo', function(req, res) {
   console.log(req.body);
