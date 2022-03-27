@@ -145,7 +145,7 @@ app.post('/verifyUserAccountInfo', function(req, res) {
   validateUserProfileToDb(uri, req.body).then(response => {console.log(response); res.send(response)});
 });
 
-app.post('/storeSellerProductInfo', function(req, res) {
+app.post('/addProduct', function(req, res) {
   console.log(req.body);
   res.set({
     'Access-Control-Allow-Origin': '*'
