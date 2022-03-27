@@ -105,15 +105,15 @@ async function validateUserProfileToDb(uri_, user_info) {
 }
 }
 
-//Create an API endpoint to add a product to the database
+//Create an API endpoint to add a product to the database (_id can be viewed as SKU; unique)
 async function writeNewSellerProductToDb(uri_, seller_info) {
   try {
     const client = await  MongoClient.connect(uri_, {
       useUnifiedTopology: true, serverApi: ServerApiVersion.v1
     });
     const db = client.db("boreal_db");
-    var users_tb = db.collection("products");
-    const response = await users_tb.insertOne(seller_info);
+    var products_tb = db.collection("products");
+    const response = await products_tb.insertOne(seller_info);
     client.close();
     return response;
 
@@ -123,6 +123,27 @@ async function writeNewSellerProductToDb(uri_, seller_info) {
   }
   
 }
+
+//Create API endpoint to see all items I have posted as a seller (input: seller_id; output: seller's products)
+async function retrieveProductsInDb(uri_, seller_info) {
+  try {
+  const client = await  MongoClient.connect(uri_, {
+    useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+  });
+  const db = client.db("boreal_db");
+  var products_tb = db.collection("products");
+  const response = await products_tb.find({"seller_id": seller_info.seller_id},{
+  }).toArray();
+  client.close();
+  return response;
+} catch(error) {
+  client.close();
+  console.log(error);
+}
+}
+
+
+
 app.post('/storeUserAccountInfo', function(req, res) {
   console.log(req.body);
   res.set({
@@ -143,6 +164,14 @@ app.post('/verifyUserAccountInfo', function(req, res) {
     'Access-Control-Allow-Origin': '*'
   })
   validateUserProfileToDb(uri, req.body).then(response => {console.log(response); res.send(response)});
+});
+//Create API endpoint to see all items I have posted as a seller
+app.get("/retrieveProducts", (req, res) => {
+  res.set({ "Access-Control-Allow-Origin": "*" });
+
+  retrieveProductsInDb(uri, req.body).then((response) => {
+    res.send(response);
+  });
 });
 
 app.post('/addProduct', function(req, res) {
