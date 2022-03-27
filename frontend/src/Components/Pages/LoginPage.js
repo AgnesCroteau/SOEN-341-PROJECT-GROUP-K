@@ -8,6 +8,7 @@ function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(true); // Even though it is not necessarily true the first time
+    const [emptyFields, setEmptyFields] = useState(false);
 
     const dispatchUser = useDispatchUser();
     const setUser = (user) => {
@@ -26,6 +27,10 @@ function LoginPage() {
     }
 
     const handleSubmit = () => {
+
+        if (email === "" && password === "" ) {setEmptyFields(true); return;}
+        else {setEmptyFields(false);}
+
         fetch('http://localhost:3001/verifyUserAccountInfo/', {
             method: 'POST',
             headers: {
@@ -68,6 +73,7 @@ function LoginPage() {
                     </Form>
 
                     {!loggedIn  && <p style={{color: 'red'}}>Wrong email or password. Please try again.</p>}
+                    {emptyFields  && <p style={{color: 'red'}}>Please enter email and password.</p>}
 
                     <Button className= "mb-3" style={{width: "100%"}} variant="primary" type="submit" onClick={handleSubmit}>
                             Continue
