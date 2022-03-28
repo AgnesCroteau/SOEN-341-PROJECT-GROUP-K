@@ -1,16 +1,49 @@
 import { Button, Image, Table, Container } from 'react-bootstrap';
 import Navigation from '../Layout/Navigation';
+import { useNavigate } from "react-router-dom";
 import '../Page Styles/ShoppingCartPage.css';
-import { useCart } from '../Cart';
+import { useUser } from '../UserContext';
 
 
 function ShoppingCartPage(props) {
+    
+    let navigate = useNavigate();
+    const userInfo = useUser();
+    const userState = useUser();
+
+
+    const handlePlaceOrder = async (event) => {
+        event.preventDefault(); 
+        const customer_id = userInfo._id;    
+        const products = props.list;
+        try {
+            let res = await fetch("http://localhost:3001/sendOrder", {
+            method: "POST",
+            mode: "cors",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                //No Id so it can create a new one every time its added to database  
+                customer_id,
+                products
+            })
+        });
+            if (res.status === 200) {
+              console.log("Order placed successfully.")
+            } else {
+
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
-        <>
-            <Navigation />
-            <Container>
+        <><Navigation />
+            <Container> 
+            <h1 onClick={() => { navigate('/') }} style={{ textAlign: "center", marginTop: '2%', fontWeight: "bold" }}>BOREAL.ca</h1> 
                 <h2 className="cart-title">Shopping Cart</h2>
                 <Table responsive>
+
                     <thead>
                         <tr>
                             <th><h4>Item</h4></th>
@@ -28,15 +61,15 @@ function ShoppingCartPage(props) {
                                      </div>
                                     </th>
                                     <th className="price align-top"><h5>${item.price}</h5></th>
-                                    </tr>    
+                                    </tr>     
                                 )
                             })
                         }
                     </thead>
                 </Table>
+                {userState &&   <Button variant="primary" style={{float: 'right'}} type="submit" onClick={handlePlaceOrder}>Place Order</Button> }
             </Container>
         </>
     )
 }
-
 export default ShoppingCartPage;
