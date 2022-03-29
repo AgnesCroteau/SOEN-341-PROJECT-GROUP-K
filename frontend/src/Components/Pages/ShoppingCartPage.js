@@ -3,6 +3,7 @@ import Navigation from '../Layout/Navigation';
 import { useNavigate } from "react-router-dom";
 import '../Page Styles/ShoppingCartPage.css';
 import { useUser } from '../UserContext';
+import { useDispatchCart } from '../Cart';
 
 
 function ShoppingCartPage(props) {
@@ -10,6 +11,12 @@ function ShoppingCartPage(props) {
     let navigate = useNavigate();
     const userInfo = useUser();
     const userState = useUser();
+    const dispatch = useDispatchCart();
+
+    const handleRemove = (index) => {
+        console.log(index);
+        dispatch({type: "REMOVE", index});
+    };
 
 
     const handlePlaceOrder = async (event) => {
@@ -58,16 +65,18 @@ function ShoppingCartPage(props) {
                                     <div className="float-start row flex-wrap main-content">
                                         <Image className="item-image align-items-center" src={item.img} responsive />
                                         <h5 className="col-md-6">{item.title}</h5>
-                                     </div>
+                                    </div>
                                     </th>
-                                    <th className="price align-top"><h5>${item.price}</h5></th>
+                                    <th className="price align-top"><h5>${item.price}</h5>
+                                    <Button variant="danger" onClick = {() => handleRemove(props.list.indexOf(item))}>Delete From Cart</Button>
+                                    </th>
                                     </tr>     
                                 )
                             })
                         }
                     </thead>
                 </Table>
-                {userState &&   <Button variant="primary" style={{float: 'right'}} type="submit" onClick={handlePlaceOrder}>Place Order</Button> }
+                {userState && <Button variant="primary" style={{float: 'right'}} type="submit" onClick={handlePlaceOrder}>Place Order</Button> }
             </Container>
         </>
     )
