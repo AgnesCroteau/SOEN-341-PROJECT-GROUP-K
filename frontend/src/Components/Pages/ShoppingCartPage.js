@@ -3,7 +3,7 @@ import Navigation from '../Layout/Navigation';
 import { useNavigate } from "react-router-dom";
 import '../Page Styles/ShoppingCartPage.css';
 import { useUser } from '../UserContext';
-import { useCart } from '../Cart';
+import { useCart, useDispatchCart } from '../Cart';
 
 
 function ShoppingCartPage(props) {
@@ -11,6 +11,7 @@ function ShoppingCartPage(props) {
     let navigate = useNavigate();
     const user = useUser();
     const cart = useCart();
+    const dispatchCart = useDispatchCart();
 
     const handlePlaceOrder = async (event) => {
         event.preventDefault(); 
@@ -29,6 +30,7 @@ function ShoppingCartPage(props) {
         });
             if (res.status === 200) {
                 alert("Order placed successfully.");
+                dispatchCart({type: "REMOVEALL"});
                 navigate('/');
             } else {
 
