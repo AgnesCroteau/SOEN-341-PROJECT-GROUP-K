@@ -148,7 +148,7 @@ async function retrieveOrderInDb(uri_, user_info) {
   const db = client.db("boreal_db");
   var orders_tb = db.collection("orders");
   //retrieve all orders associated to customer_id
-  const response = await orders_tb.find({"customer_id": user_info.customer_id},{
+  const response = await orders_tb.find({"customer_id": user_info._id},{
   }).toArray();
   client.close();
   return response;
@@ -172,7 +172,7 @@ app.post("/sendOrder", (req, res) => {
 });
 
 //RETRIEVE MY ORDERS
-app.get("/retrieveOrder", (req, res) => {
+app.post("/retrieveOrder", (req, res) => {
   res.set({ "Access-Control-Allow-Origin": "*" });
   retrieveOrderInDb(uri, req.body).then((response) => {
     res.send(response);

@@ -1,10 +1,30 @@
+import { useState, useEffect } from 'react';
 import { Card, Container, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Navigation from "../Layout/Navigation";
+import { useUser } from '../UserContext';
 
 
 function CustomerOrdersPage(props) {
-    let navigate = useNavigate();
+    const user = useUser();
+    const [myOrders, setMyOrders] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3001/retrieveOrder', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                user
+            )
+        })
+            .then(response =>  response.json() )
+                .then(data => {
+                    setMyOrders(data); 
+                });
+
+    }, []);
+    
+
     return (
     <>
     <Navigation />
@@ -21,38 +41,33 @@ function CustomerOrdersPage(props) {
                                 <th style={{width: "200px"}}></th>
                                 <th style={{width: "500px"}}></th>
                                 <th style={{textAlign: "center", width: "120px"}}>Price</th>
-                                <th style={{textAlign: "center", width: "120px"}}>Status</th>
                             </tr>
                         </thead>    
                     </table>
-                    <hr style={{width: "", height: "3px"}}></hr>
+
+                    {
+                    myOrders.map((order) =>
+                        <>
+                        <hr style={{width: "", height: "3px"}}></hr>
                     <table>
                         <tbody>
                             <tr>
                                 <td style={{width: "200px", backgroundColor: "#DDD"}}>
-                                    <img src={"isaac_asimov.jpeg"} style={{width: "200px", height: "150px", objectFit: "contain"}}></img>
+                                    <img src="https://cdn.pixabay.com/photo/2015/06/17/16/29/paper-bag-812728_960_720.png" style={{width: "200px"}}></img>
                                 </td>
-                                <td style={{width: "500px",padding: "20px" }}>Items ordered:<br/>Lorem Ipsum Bottom Text Lorem Ipsum Bottom Text Lorem Ipsum Bottom Text</td>
-                                <td style={{textAlign: "center", width: "120px"}}>$300.00 CAD</td>
-                                <td style={{textAlign: "center", width: "120px"}}>Processing Payment</td>
-                                
+                                <td style={{width: "500px",padding: "20px", borderStyle: "solid" }}><b>Items ordered: </b>{order.products.map((product) => product.title).join()}
+          
+
+                                 <br/>
+                                 </td>
+                                <td style={{textAlign: "center", width: "120px"}}>${order.products.map((product) => parseFloat(product.price)).reduce((partialSum, a) => partialSum + a, 0)} CAD</td> 
                             </tr>
                         </tbody>
                     </table>
-                    <hr style={{width: "", height: "3px"}}></hr>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td style={{width: "200px", backgroundColor: "#DDD"}}>
-                                    <img src={"harry_potter_and_philosopher_stone.jpg"} style={{width: "200px", height: "150px", objectFit: "contain"}}></img>
-                                </td>
-                                <td style={{width: "500px", padding: "20px"}}>Items ordered:<br/>Lorem Ipsum Bottom Text</td>
-                                <td style={{textAlign: "center", width: "120px"}}>$100.00 CAD</td>
-                                <td style={{textAlign: "center", width: "120px"}}>Delivered</td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
+                    </>) 
+                    
+                    
+                    }
                 </Form>
             </Card.Body>
         </Card>
