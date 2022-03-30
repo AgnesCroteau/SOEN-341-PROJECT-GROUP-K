@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, Container, Form } from 'react-bootstrap';
+import { Card, Container, Form, Button} from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Navigation from "../Layout/Navigation";
 import { useUser } from '../UserContext';
@@ -65,10 +65,9 @@ function CustomerOrdersPage(props) {
                         </tbody>
                     </table>
                     </>) 
-                    
-                    
                     }
                 </Form>
+                <Button variant="danger" style={{marginBottom: "20px", float: 'right'}} >Cancel Order</Button> 
             </Card.Body>
         </Card>
     </Container>
