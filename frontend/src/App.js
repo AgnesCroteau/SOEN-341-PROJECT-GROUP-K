@@ -13,14 +13,13 @@ import CustomerOrdersPage from "./Components/Pages/CustomerOrdersPage";
 
 function App() {
   
-  const list = useCart();
   const [allProducts, setAllProducts] = useState(null);
 
   useEffect(() => {
       fetch('http://localhost:3001/getAllProducts')
           .then(response =>  response.json() )
               .then(data => setAllProducts(data));
-  }, [allProducts]);
+  }, []);
 
   return (
     <div>
@@ -30,7 +29,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/editprofile" element={<ManageProfilePage/>}/>
-          <Route path="/cartpage" element={<ShoppingCartPage list={list}/>}/>
+          <Route path="/cartpage" element={<ShoppingCartPage />}/>
           <Route path="/myorders" element={<CustomerOrdersPage />}/>
           {allProducts && allProducts.map((item) =>
             <Route path={'/item' + item._id} element={<ItemDetailsPage item={item} {...item} />} />

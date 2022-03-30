@@ -3,26 +3,20 @@ import Navigation from '../Layout/Navigation';
 import { useNavigate } from "react-router-dom";
 import '../Page Styles/ShoppingCartPage.css';
 import { useUser } from '../UserContext';
-import { useDispatchCart } from '../Cart';
+import { useCart, useDispatchCart } from '../Cart';
 
 
 function ShoppingCartPage(props) {
     
     let navigate = useNavigate();
-    const userInfo = useUser();
-    const userState = useUser();
-    const dispatch = useDispatchCart();
-
-    const handleRemove = (index) => {
-        console.log(index);
-        dispatch({type: "REMOVE", index});
-    };
-
+    const user = useUser();
+    const cart = useCart();
+    const dispatchCart = useDispatchCart();
 
     const handlePlaceOrder = async (event) => {
         event.preventDefault(); 
-        const customer_id = userInfo._id;    
-        const products = props.list;
+        const customer_id = user._id;    
+        const products = cart;
         try {
             let res = await fetch("http://localhost:3001/sendOrder", {
             method: "POST",
@@ -35,7 +29,9 @@ function ShoppingCartPage(props) {
             })
         });
             if (res.status === 200) {
-              console.log("Order placed successfully.")
+                alert("Order placed successfully.");
+                dispatchCart({type: "REMOVEALL"});
+                navigate('/');
             } else {
 
             }
@@ -45,7 +41,8 @@ function ShoppingCartPage(props) {
     };
 
     return (
-        <><Navigation />
+        <>
+        <Navigation />
             <Container> 
             <h1 onClick={() => { navigate('/') }} style={{ textAlign: "center", marginTop: '2%', fontWeight: "bold" }}>BOREAL.ca</h1> 
                 <h2 className="cart-title">Shopping Cart</h2>
@@ -58,7 +55,7 @@ function ShoppingCartPage(props) {
                         </tr>
                         {
                             // Each item from cart is displayed into the shopping cart page
-                            props.list.map((item) => {
+                            cart.map((item) => {
                                 return (
                                     <tr>
                                     <th>
@@ -76,7 +73,7 @@ function ShoppingCartPage(props) {
                         }
                     </thead>
                 </Table>
-                {userState && <Button variant="primary" style={{float: 'right'}} type="submit" onClick={handlePlaceOrder}>Place Order</Button> }
+                <Button variant={user ? "primary": "secondary"} style={{ marginBottom: "20px", float: 'right'}} type="submit" onClick={user ? handlePlaceOrder : () => alert("Please log in to place order.")}>Place Order</Button>
             </Container>
         </>
     )

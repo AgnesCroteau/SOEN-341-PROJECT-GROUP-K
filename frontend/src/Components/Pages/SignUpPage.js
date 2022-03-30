@@ -34,6 +34,8 @@ function SignUpPage() {
                 setAccountType("Customer");
 
                 // TODO: User created successfully, redirect to correct page here
+                alert("Account Created !");
+                navigate('/');
             } else {
                 // TODO: User creation error, show an error message
             }
