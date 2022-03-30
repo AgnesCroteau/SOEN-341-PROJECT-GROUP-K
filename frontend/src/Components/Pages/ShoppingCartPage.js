@@ -40,6 +40,11 @@ function ShoppingCartPage(props) {
         }
     };
 
+    const handleRemove = (index) => {
+        console.log(index);
+        dispatchCart({type: "REMOVE", index});
+    };
+
     return (
         <>
         <Navigation />
@@ -65,7 +70,7 @@ function ShoppingCartPage(props) {
                                     </div>
                                     </th>
                                     <th className="price align-top"><h5>${item.price}</h5>
-                                    <Button variant="danger" onClick = {() => handleRemove(props.list.indexOf(item))}>Delete From Cart</Button>
+                                    <Button variant="danger" onClick = {() => handleRemove(cart.indexOf(item))}>Delete From Cart</Button>
                                     </th>
                                     </tr>     
                                 )
