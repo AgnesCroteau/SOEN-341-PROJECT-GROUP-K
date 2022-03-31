@@ -270,6 +270,26 @@ async function retrieveProductsInDb(uri_, seller_info) {
 }
 }
 
+//RETRIEVE ORDERS, INPUT: seller_id
+//RETRIEVE ORDERS, OUTPUT: returns all orders with products sold by seller
+async function retrieveSellerOrders(uri_, seller_id) {
+  try {
+    const client = await MongoClient.connect(uri_, {
+      useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+    });
+    const db = client.db("boreal_db");
+    const query = {"products": {
+      $elemMatch: {"seller_id":seller_id}
+    }};
+    const response = await db.collection("orders").find(query).toArray();
+    client.close();
+    return response;
+  } catch (error) {
+    console.log(error);
+    client.close();
+  }
+}
+
 //ADD PRODUCT
 app.post('/addProduct', function(req, res) {
   console.log(req.body);
@@ -304,6 +324,14 @@ app.get("/retrieveProducts", (req, res) => {
   });
 });
 
+// RETRIEVE SELLER ORDERS
+app.get("/retrieveSellerOrders", (req, res) => {
+  res.set({ "Access-Control-Allow-Origin": "*" });
+  retrieveSellerOrders(uri, req.body.seller_id).then((response) => {
+    res.send(response);
+  })
+})
+
 /*
 BROWSE ITEMS (CUSTOMER)
 */
@@ -331,7 +359,6 @@ app.get("/getAllProducts", (req, res) => {
     res.send(response);
   });
 });
-
 
 app.listen(3001, () => console.log('Listening on port 3001...'));
 
