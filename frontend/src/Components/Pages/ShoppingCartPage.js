@@ -57,6 +57,7 @@ function ShoppingCartPage(props) {
                         <tr>
                             <th><h4>Item</h4></th>
                             <th className="price"><h4>Price</h4></th>
+                            <th><h4></h4></th>
                         </tr>
                         {
                             // Each item from cart is displayed into the shopping cart page
@@ -70,8 +71,8 @@ function ShoppingCartPage(props) {
                                     </div>
                                     </th>
                                     <th className="price align-top"><h5>${item.price}</h5>
-                                    <Button variant="danger" onClick = {() => handleRemove(cart.indexOf(item))}>Delete From Cart</Button>
                                     </th>
+                                    <th className="align-middle"><Button variant="danger" onClick = {() => handleRemove(cart.indexOf(item))}>X</Button></th>
                                     </tr>     
                                 )
                             })
