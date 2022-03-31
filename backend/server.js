@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectID } = require('mongodb');
 const uri = "mongodb+srv://dev:hCoYCjUTGFKEC2IK@boreal.vaa1q.mongodb.net/boreal_db?retryWrites=true&w=majority";
 
 const express = require('express');
@@ -158,6 +158,26 @@ async function retrieveOrderInDb(uri_, user_info) {
 }
 }
 
+//DELETE ORDER, INPUT:  _id of Clients Order 
+//DELETE PRODUCT, OUTPUT:  remove order associated to _id from database
+async function deleteOrderInDb(uri_, order) {
+  try {
+    const client = await  MongoClient.connect(uri_, {
+      useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+    });
+    const db = client.db("boreal_db");
+    var orders_tb = db.collection("orders");
+    //This is used to retreive the _id in the database 
+    const response = await orders_tb.deleteOne({"_id": new ObjectID(order._id)},{
+    })
+    client.close();
+    return response;
+  } catch(error) {
+    client.close();
+    console.log(error);
+  }
+}
+
 //ADD ORDER
 app.post("/sendOrder", (req, res) => {
   console.log("\n[API endpoint - send Order]\n\nOrder to add: ");
@@ -179,8 +199,14 @@ app.post("/retrieveOrder", (req, res) => {
   });
 });
 
-
-
+//DELETE MY ORDERS 
+app.delete('/deleteOrder', function(req, res) {
+  console.log(req.body);
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  })
+  deleteOrderInDb(uri, req.body).then(response => {console.log(response); res.send(response)});
+});
 
 /*
 PRODUCTS (SELLER)
