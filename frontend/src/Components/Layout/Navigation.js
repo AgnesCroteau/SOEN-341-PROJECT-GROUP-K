@@ -18,11 +18,11 @@ function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/cartpage">Cart ({items.length})</Nav.Link>
+          {userState &&  <Nav.Link as={Link} to="/editprofile">Manage My Profile</Nav.Link> }
         </Nav>
         <Nav>
           {userState && <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link> }
-          {userState &&  <Nav.Link as={Link} to="/editprofile">Manage My Profile</Nav.Link> }
+          <Nav.Link as={Link} to="/cartpage">Cart({items.length})</Nav.Link>
           {!userState &&  <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link> }
           {!userState && <Nav.Link as={Link} to="/login">Log In</Nav.Link> }
           {userState && <Nav.Link href="/">Log Out</Nav.Link> }
