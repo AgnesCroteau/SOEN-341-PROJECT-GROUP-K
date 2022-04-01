@@ -40,6 +40,11 @@ function ShoppingCartPage(props) {
         }
     };
 
+    const handleRemove = (index) => {
+        console.log(index);
+        dispatchCart({type: "REMOVE", index});
+    };
+
     return (
         <>
         <Navigation />
@@ -52,6 +57,7 @@ function ShoppingCartPage(props) {
                         <tr>
                             <th><h4>Item</h4></th>
                             <th className="price"><h4>Price</h4></th>
+                            <th><h4></h4></th>
                         </tr>
                         {
                             // Each item from cart is displayed into the shopping cart page
@@ -62,9 +68,11 @@ function ShoppingCartPage(props) {
                                     <div className="float-start row flex-wrap main-content">
                                         <Image className="item-image align-items-center" src={item.img} responsive />
                                         <h5 className="col-md-6">{item.title}</h5>
-                                     </div>
+                                    </div>
                                     </th>
-                                    <th className="price align-top"><h5>${item.price}</h5></th>
+                                    <th className="price align-top"><h5>${item.price}</h5>
+                                    </th>
+                                    <th className="align-middle"><Button variant="danger" onClick = {() => handleRemove(cart.indexOf(item))}>X</Button></th>
                                     </tr>     
                                 )
                             })
