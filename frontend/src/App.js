@@ -10,6 +10,7 @@ import ItemDetailsPage from "./Components/Pages/ItemDetailsPage";
 import ManageProfilePage from "./Components/Pages/ManageProfilePage";
 import ShoppingCartPage from "./Components/Pages/ShoppingCartPage";
 import CustomerOrdersPage from "./Components/Pages/CustomerOrdersPage";
+import AddItemForm from "./Components/Pages/AddItemForm";
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
           <Route path="/editprofile" element={<ManageProfilePage/>}/>
           <Route path="/cartpage" element={<ShoppingCartPage />}/>
           <Route path="/myorders" element={<CustomerOrdersPage />}/>
+          <Route path="/additemform" element={<AddItemForm/>}/>
           {allProducts && allProducts.map((item) =>
             <Route path={'/item' + item._id} element={<ItemDetailsPage item={item} {...item} />} />
           )}
