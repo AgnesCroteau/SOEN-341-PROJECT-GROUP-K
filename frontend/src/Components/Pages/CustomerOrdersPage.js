@@ -19,7 +19,7 @@ function CustomerOrdersPage(props) {
                 order
             )});
 
-        if(confirm('Are you sure would like to delete?\nEither OK or Cancel.'))
+        if(window.confirm('Are you sure would like to delete?\nEither OK or Cancel.'))
             navigate('/');
     }
 
