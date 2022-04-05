@@ -401,6 +401,14 @@ async function getUsersFromDatabase() {
   return allUsers;
 }
 
+//GET USERS
+app.get("/getAllUsers", (req, res) => {
+  res.set({ "Access-Control-Allow-Origin": "*" });
+
+  getUsersFromDatabase().then((response) => {
+    res.send(response);
+  });
+});
 
 app.listen(3001, () => console.log('Listening on port 3001...'));
 
