@@ -266,7 +266,7 @@ async function deleteProductInDb(uri_, seller_info) {
     });
     const db = client.db("boreal_db");
     var products_tb = db.collection("products");
-    const response = await products_tb.deleteOne({"_id": seller_info._id},{
+    const response = await products_tb.deleteOne({"_id": new ObjectID(seller_info._id)},{
     })
     client.close();
     return response;
