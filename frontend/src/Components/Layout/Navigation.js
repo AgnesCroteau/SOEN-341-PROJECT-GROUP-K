@@ -22,6 +22,7 @@ function Navigation() {
           { userState && userState.account_type == 'Seller' && <Nav.Link as={Link} to={"/additemform"}>Add Product</Nav.Link> }
         </Nav>
         <Nav>
+          { userState && userState.account_type == 'Seller' && <Nav.Link as={Link} to={"/myproducts"}>My Products</Nav.Link> }
           { userState && <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link> }
           <Nav.Link as={Link} to="/cartpage">Cart({items.length})</Nav.Link>
           { !userState &&  <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link> }
