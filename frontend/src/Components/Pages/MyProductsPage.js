@@ -46,7 +46,7 @@ function MyProductsPage(props) {
             <Container> 
             <h1 onClick={() => { navigate('/') }} style={{ textAlign: "center", marginTop: '2%', fontWeight: "bold" }}>BOREAL.ca</h1> 
                 <h2 className="cart-title">My Products</h2>
-                <h6>Here is a list of all the products you're selling.</h6>
+                <h5 className='text-primary'>Here is a list of all the products you're selling.</h5>
                 <Table responsive>
 
                     <thead>

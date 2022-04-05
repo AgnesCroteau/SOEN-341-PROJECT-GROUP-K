@@ -386,5 +386,29 @@ app.get("/getAllProducts", (req, res) => {
   });
 });
 
+//GET USERS, INPUT: GET REQUEST
+//GET USERS, OUTPUT: returns all users in the database 
+async function getUsersFromDatabase() {
+  const client = await MongoClient.connect(uri, {
+    useUnifiedTopology: true,
+    serverApi: ServerApiVersion.v1,
+  });
+  const db = client.db("boreal_db");
+  var users_tb = db.collection("user_accounts_info");
+  let allUsers = await users_tb.find().toArray();
+
+  client.close();
+  return allUsers;
+}
+
+//GET USERS
+app.get("/getAllUsers", (req, res) => {
+  res.set({ "Access-Control-Allow-Origin": "*" });
+
+  getUsersFromDatabase().then((response) => {
+    res.send(response);
+  });
+});
+
 app.listen(3001, () => console.log('Listening on port 3001...'));
 
