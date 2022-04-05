@@ -11,6 +11,7 @@ import ManageProfilePage from "./Components/Pages/ManageProfilePage";
 import ShoppingCartPage from "./Components/Pages/ShoppingCartPage";
 import CustomerOrdersPage from "./Components/Pages/CustomerOrdersPage";
 import AddItemForm from "./Components/Pages/AddItemForm";
+import MyProductsPage from "./Components/Pages/MyProductsPage";
 
 function App() {
   
@@ -33,6 +34,7 @@ function App() {
           <Route path="/cartpage" element={<ShoppingCartPage />}/>
           <Route path="/myorders" element={<CustomerOrdersPage />}/>
           <Route path="/additemform" element={<AddItemForm/>}/>
+          <Route path="/myproducts" element={<MyProductsPage />}/>
           {allProducts && allProducts.map((item) =>
             <Route path={'/item' + item._id} element={<ItemDetailsPage item={item} {...item} />} />
           )}
