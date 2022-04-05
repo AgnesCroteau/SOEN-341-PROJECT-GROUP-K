@@ -15,6 +15,19 @@ function MyProductsPage(props) {
     const dispatchCart = useDispatchCart();
     const [myProducts, setMyProducts] = useState([]);
 
+    const handleDeleteProduct = (product) => {
+
+        fetch('http://localhost:3001/deleteProduct', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                product
+            )});
+
+        if(window.confirm('Are you sure would like to delete?\nEither OK or Cancel.'))
+            navigate('/');
+    }
+
     useEffect(() => {
         fetch('http://localhost:3001/retrieveProducts', {
             method: 'POST',
@@ -55,7 +68,7 @@ function MyProductsPage(props) {
                                     </th>
                                     <th className="price align-top"><h5>${item.price}</h5>
                                     </th>
-                                    <th className="align-middle"><Button variant="danger" >Delete Product</Button></th>
+                                    <th className="align-middle"><Button onClick={() => handleDeleteProduct(item)} variant="danger" >Delete Product</Button></th>
                                     </tr>     
                                 )
                             })
