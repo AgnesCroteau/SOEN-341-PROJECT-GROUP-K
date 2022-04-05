@@ -266,7 +266,7 @@ async function deleteProductInDb(uri_, seller_info) {
     });
     const db = client.db("boreal_db");
     var products_tb = db.collection("products");
-    const response = await products_tb.deleteOne({"_id": seller_info._id},{
+    const response = await products_tb.deleteOne({"_id": new ObjectID(seller_info._id)},{
     })
     client.close();
     return response;
@@ -286,7 +286,7 @@ async function retrieveProductsInDb(uri_, seller_info) {
   const db = client.db("boreal_db");
   var products_tb = db.collection("products");
   //retrieve all products associated to seller_id 
-  const response = await products_tb.find({"seller_id": seller_info.seller_id},{
+  const response = await products_tb.find({"seller_id": seller_info._id},{
   }).toArray();
   client.close();
   return response;
@@ -343,7 +343,7 @@ app.delete('/deleteProduct', function(req, res) {
 });
 
 //RETRIEVE MY PRODUCTS
-app.get("/retrieveProducts", (req, res) => {
+app.post("/retrieveProducts", (req, res) => {
   res.set({ "Access-Control-Allow-Origin": "*" });
   retrieveProductsInDb(uri, req.body).then((response) => {
     res.send(response);
