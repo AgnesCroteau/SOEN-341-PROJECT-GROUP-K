@@ -386,6 +386,10 @@ app.get("/getAllProducts", (req, res) => {
   });
 });
 
+/*
+GET USERS (ADMIN)
+*/
+
 //GET USERS, INPUT: GET REQUEST
 //GET USERS, OUTPUT: returns all users in the database 
 async function getUsersFromDatabase() {
@@ -409,6 +413,25 @@ app.get("/getAllUsers", (req, res) => {
     res.send(response);
   });
 });
+
+//DELETE USER, INPUT: _id
+//DELETE USER, OUTPUT:  remove user associated to _id from database
+async function deleteUsersFromDatabase(uri_, user) {
+  try {
+    const client = await  MongoClient.connect(uri_, {
+      useUnifiedTopology: true, serverApi: ServerApiVersion.v1
+    });
+    const db = client.db("boreal_db");
+    var users_tb = db.collection("user_accounts_info");
+    const response = await users_tb.deleteOne({"_id": new ObjectID(user._id)},{
+    })
+    client.close();
+    return response;
+  } catch(error) {
+    client.close();
+    console.log(error);
+  }
+}
 
 app.listen(3001, () => console.log('Listening on port 3001...'));
 
