@@ -432,6 +432,14 @@ async function deleteUsersFromDatabase(uri_, user) {
     console.log(error);
   }
 }
+//DELETE USER
+app.delete('/deleteUser', function(req, res) {
+  console.log(req.body);
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  })
+  deleteUsersFromDatabase(uri, req.body).then(response => {console.log(response); res.send(response)});
+});
 
 app.listen(3001, () => console.log('Listening on port 3001...'));
 
