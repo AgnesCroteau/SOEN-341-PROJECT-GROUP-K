@@ -20,6 +20,7 @@ function Navigation() {
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           { userState &&  <Nav.Link as={Link} to="/editprofile">Manage My Profile</Nav.Link> }
           { userState && userState.account_type == 'Seller' && <Nav.Link as={Link} to={"/additemform"}>Add Product</Nav.Link> }
+          { userState && userState.account_type == 'Admin' && <Nav.Link as={Link} to={"/userslist"}>List of Users</Nav.Link> }
         </Nav>
         <Nav>
           { userState && userState.account_type == 'Seller' && <Nav.Link as={Link} to={"/myproducts"}>My Products</Nav.Link> }
