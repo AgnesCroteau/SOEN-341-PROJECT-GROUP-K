@@ -12,6 +12,7 @@ import ShoppingCartPage from "./Components/Pages/ShoppingCartPage";
 import CustomerOrdersPage from "./Components/Pages/CustomerOrdersPage";
 import AddItemForm from "./Components/Pages/AddItemForm";
 import MyProductsPage from "./Components/Pages/MyProductsPage";
+import UsersList from "./Components/Pages/UsersList";
 
 function App() {
   
@@ -38,6 +39,7 @@ function App() {
           {allProducts && allProducts.map((item) =>
             <Route path={'/item' + item._id} element={<ItemDetailsPage item={item} {...item} />} />
           )}
+          <Route path="/userslist" element={<UsersList />}/>
         </Routes>
       </BrowserRouter>
     </div>
