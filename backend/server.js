@@ -47,7 +47,7 @@ async function updateUserProfileToDb(uri_, user_info) {
     const db = client.db("boreal_db");
     var users_tb = db.collection("user_accounts_info");
     //This will retrieve the _id associated to the logged in user
-    const response = await users_tb.updateOne({"_id": user_info._id},{
+    const response = await users_tb.updateOne({"_id": new ObjectID(user_info._id)},{
       $set: {
         "full_name": user_info.full_name,
         "email": user_info.email,
