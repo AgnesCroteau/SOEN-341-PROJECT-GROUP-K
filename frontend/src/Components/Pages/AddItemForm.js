@@ -8,8 +8,7 @@ function AddItemForm() {
     let navigate = useNavigate();
     const user = useUser();
     const seller_id = user._id;
-
-    const [title, settitle] = useState("");
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [img, setImg] = useState("");
@@ -38,7 +37,7 @@ function AddItemForm() {
     };
 
     const handletitleChange = (title) =>{
-        settitle(title);
+        setTitle(title);
         console.log(title);
     }
     const handleDescriptionChange = (description) =>{
