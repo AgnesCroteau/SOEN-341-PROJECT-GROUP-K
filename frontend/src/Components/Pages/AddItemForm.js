@@ -36,7 +36,7 @@ function AddItemForm() {
         });
     };
 
-    const handletitleChange = (title) =>{
+    const handleTitleChange = (title) =>{
         setTitle(title);
         console.log(title);
     }
@@ -89,7 +89,7 @@ function AddItemForm() {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Product title</Form.Label>
-                            <Form.Control placeholder="Enter product's title" onChange={(e) => handletitleChange(e.target.value)} />
+                            <Form.Control placeholder="Enter product's title" onChange={(e) => handleTitleChange(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
