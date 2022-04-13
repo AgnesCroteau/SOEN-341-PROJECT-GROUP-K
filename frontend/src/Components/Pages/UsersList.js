@@ -1,13 +1,12 @@
-import { Button, Card, Container, Form, Table } from 'react-bootstrap';
+import { Button, Container, Spinner,  } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useUser } from '../UserContext';
 import Navigation from '../Layout/Navigation';
 
-function UsersList(props) {
+function UsersList() {
 
     let navigate = useNavigate();
-    const userState = useUser();
     const [allUsers, setAllUsers] = useState([]);
 
     const handleDeleteUser = (user) => {
@@ -28,7 +27,7 @@ function UsersList(props) {
         fetch('http://localhost:3001/getAllUsers')
             .then(response =>  response.json() )
                 .then(data => {
-                    setAllUsers(data); 
+                    setAllUsers(data);
                 });
     }, []);
     
@@ -53,23 +52,24 @@ function UsersList(props) {
                                     return (
                                         <tr>
                                             <td>
-                                                <h5>{user.full_name}</h5>
+                                                <h6>{user.full_name}</h6>
                                             </td>
                                             <td>
-                                                <h5>{user.email}</h5>
+                                                <h6>{user.email}</h6>
                                             </td>
                                             <td>
-                                                <h5 style={{width: "200px"}}>{user.account_type}</h5>
+                                                <h6 style={{width: "200px"}}>{user.account_type}</h6>
                                             </td>
                                             <td>
-                                                <Button disabled={user.account_type == 'Admin'} variant="danger" style={{borderRadius: "100%"}} onClick={() => handleDeleteUser(user)}>X</Button>
+                                                <Button disabled={user.account_type == 'Admin'} variant="warning" size='sm' onClick={() => navigate('/editprofile', {state: user})}>Edit</Button>
+                                            </td>
+                                            <td>
+                                                <Button disabled={user.account_type == 'Admin'} variant="danger" size='sm' style={{borderRadius: "100%"}} onClick={() => handleDeleteUser(user)}>X</Button>
                                             </td>
                                         </tr>   
                                           
                                     )
-                                })
-                            }
-
+                                })}    
                     </table>
                 </Container>
             </>

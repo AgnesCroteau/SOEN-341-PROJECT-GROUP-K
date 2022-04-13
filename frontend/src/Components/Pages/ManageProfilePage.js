@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Button, Card, Container, Form, Stack } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from '../UserContext';
 
 
 function ManageProfilePage() {
 
     let navigate = useNavigate();
-
-    const currentUserInfo = useUser();
+    const location = useLocation();
+    const myAccount = useUser();
+    
+    const currentUserInfo = location.state ? location.state : myAccount;
     const [_id] = useState(currentUserInfo._id);
     const [full_name, setName] = useState(currentUserInfo.full_name);
     const [email, setEmail] = useState(currentUserInfo.email);
@@ -66,10 +68,7 @@ function ManageProfilePage() {
 
             <Card style={{ width: '35rem', position: 'absolute', top: '12%', outline: "solid" }}>
                 <h3 style={{ textAlign: "center" }}>Edit Account Information</h3>
-                <Card.Body> <Stack direction="horizontal" gap={3}>
-                    <div className="ms-auto"><Card.Link href="#">Edit</Card.Link></div>
-                </Stack>
-
+                <Card.Body>
                     <Form>
                         <Form.Group className="mb-2" controlId="formBasicName">
                             <Form.Label>Full Name</Form.Label>
@@ -84,17 +83,17 @@ function ManageProfilePage() {
 
 
                         <Form.Group className="mb-2" controlId="formBasicPassword">
-                            <Form.Label>Your Password</Form.Label>
+                            <Form.Label>Password</Form.Label>
                             <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={password} />
                         </Form.Group>
 
                         <Form.Group className="mb-2" controlId="formBasicAddress">
-                            <Form.Label>Your Home Address</Form.Label>
+                            <Form.Label>Home Address</Form.Label>
                             <Form.Control type="home_address" value={home_address} onChange={(e) => setAddress(e.target.value)} placeholder={home_address} />
                         </Form.Group>
 
                         <Form.Group className="mb-2" controlId="formBasicNumber">
-                            <Form.Label>Your Phone Number</Form.Label>
+                            <Form.Label>Phone Number</Form.Label>
                             <Form.Control type="phone_number" value={phone_number} onChange={(e) => setPhone(e.target.value)} placeholder={phone_number} />
                         </Form.Group>
 
@@ -111,7 +110,7 @@ function ManageProfilePage() {
                             <Form.Select value={account_type} onChange={(e) => setAccountType(e.target.value)}>
                                 <option>Customer</option>
                                 <option>Seller</option>
-                                <option>Admin</option>
+                                {myAccount.account_type === 'Admin' && <option>Admin</option>}
                              </Form.Select>
                         </Form.Group>
                        
