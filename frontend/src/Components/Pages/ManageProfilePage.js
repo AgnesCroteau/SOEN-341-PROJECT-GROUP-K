@@ -68,10 +68,7 @@ function ManageProfilePage() {
 
             <Card style={{ width: '35rem', position: 'absolute', top: '12%', outline: "solid" }}>
                 <h3 style={{ textAlign: "center" }}>Edit Account Information</h3>
-                <Card.Body> <Stack direction="horizontal" gap={3}>
-                    <div className="ms-auto"><Card.Link href="#">Edit</Card.Link></div>
-                </Stack>
-
+                <Card.Body>
                     <Form>
                         <Form.Group className="mb-2" controlId="formBasicName">
                             <Form.Label>Full Name</Form.Label>
