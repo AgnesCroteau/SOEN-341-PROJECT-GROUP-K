@@ -8,8 +8,7 @@ function AddItemForm() {
     let navigate = useNavigate();
     const user = useUser();
     const seller_id = user._id;
-
-    const [name, setName] = useState("");
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [img, setImg] = useState("");
@@ -37,9 +36,9 @@ function AddItemForm() {
         });
     };
 
-    const handleNameChange = (name) =>{
-        setName(name);
-        console.log(name);
+    const handleTitleChange = (title) =>{
+        setTitle(title);
+        console.log(title);
     }
     const handleDescriptionChange = (description) =>{
         setDescription(description);
@@ -60,7 +59,7 @@ function AddItemForm() {
             mode: "cors",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name, 
+                title, 
                 description, 
                 price, 
                 img,
@@ -89,8 +88,8 @@ function AddItemForm() {
                     <Card.Title style={{ textAlign: "center" }}>Add a Product</Card.Title>
                     <Form>
                         <Form.Group className="mb-3">
-                            <Form.Label>Product Name</Form.Label>
-                            <Form.Control placeholder="Enter product's name" onChange={(e) => handleNameChange(e.target.value)} />
+                            <Form.Label>Product title</Form.Label>
+                            <Form.Control placeholder="Enter product's title" onChange={(e) => handleTitleChange(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3">
@@ -117,7 +116,7 @@ function AddItemForm() {
                         { error && <div style={{color: 'red'}}>An error occured. Your file may be too large. Please, try again.</div> }
 
                         <div className='d-grid'>
-                            <Button disabled={ !name || !description || !price || !img } variant="primary" type="submit" onClick={handlePlaceOrder}>Place Product for Sale</Button>
+                            <Button disabled={ !title || !description || !price || !img } variant="primary" type="submit" onClick={handlePlaceOrder}>Place Product for Sale</Button>
                         </div>
                     </Form>
                 </Card.Body>
