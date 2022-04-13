@@ -86,17 +86,17 @@ function ManageProfilePage() {
 
 
                         <Form.Group className="mb-2" controlId="formBasicPassword">
-                            <Form.Label>Your Password</Form.Label>
+                            <Form.Label>Password</Form.Label>
                             <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={password} />
                         </Form.Group>
 
                         <Form.Group className="mb-2" controlId="formBasicAddress">
-                            <Form.Label>Your Home Address</Form.Label>
+                            <Form.Label>Home Address</Form.Label>
                             <Form.Control type="home_address" value={home_address} onChange={(e) => setAddress(e.target.value)} placeholder={home_address} />
                         </Form.Group>
 
                         <Form.Group className="mb-2" controlId="formBasicNumber">
-                            <Form.Label>Your Phone Number</Form.Label>
+                            <Form.Label>Phone Number</Form.Label>
                             <Form.Control type="phone_number" value={phone_number} onChange={(e) => setPhone(e.target.value)} placeholder={phone_number} />
                         </Form.Group>
 
