@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Button, Card, Container, Form, Stack } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from '../UserContext';
 
 
 function ManageProfilePage() {
 
     let navigate = useNavigate();
-
-    const currentUserInfo = useUser();
+    const location = useLocation();
+    const me = useUser();
+    
+    const currentUserInfo = location.state ? location.state : me;
     const [_id] = useState(currentUserInfo._id);
     const [full_name, setName] = useState(currentUserInfo.full_name);
     const [email, setEmail] = useState(currentUserInfo.email);
@@ -111,7 +113,6 @@ function ManageProfilePage() {
                             <Form.Select value={account_type} onChange={(e) => setAccountType(e.target.value)}>
                                 <option>Customer</option>
                                 <option>Seller</option>
-                                <option>Admin</option>
                              </Form.Select>
                         </Form.Group>
                        
