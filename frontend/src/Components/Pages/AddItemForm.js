@@ -117,7 +117,7 @@ function AddItemForm() {
                         { error && <div style={{color: 'red'}}>An error occured. Your file may be too large. Please, try again.</div> }
 
                         <div className='d-grid'>
-                            <Button disabled={ !name || !description || !price || !img } variant="primary" type="submit" onClick={handlePlaceOrder}>Place Product for Sale</Button>
+                            <Button disabled={ !name || !description || !price || !img } variant="primary" type="submit" onClick={handlePlaceOrder}>Place Product for Sale</Button>
                         </div>
                     </Form>
                 </Card.Body>
