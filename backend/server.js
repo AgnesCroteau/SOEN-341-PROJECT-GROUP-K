@@ -138,14 +138,17 @@ async function writeOrderInDB(order) {
   return requestStatus;
 }
 
+
 //RETRIEVE MY ORDERS, INPUT: customer_id
 //RETRIEVE MY ORDERS, OUTPUT: returns all orders associated to customer_id 
+
 async function retrieveOrderInDb(uri_, user_info) {
   try {
   const client = await  MongoClient.connect(uri_, {
     useUnifiedTopology: true, serverApi: ServerApiVersion.v1
   });
   const db = client.db("boreal_db");
+
   var orders_tb = db.collection("orders");
   //retrieve all orders associated to customer_id
   const response = await orders_tb.find({"customer_id": user_info._id},{
@@ -288,6 +291,10 @@ async function retrieveProductsInDb(uri_, seller_info) {
   //retrieve all products associated to seller_id 
   const response = await products_tb.find({"seller_id": seller_info._id},{
   }).toArray();
+  var users_tb = db.collection("orders");
+  const response = await users_tb.findOne({"_id": user_info._id},{
+  })
+ 
   client.close();
   return response;
 } catch(error) {
@@ -295,6 +302,7 @@ async function retrieveProductsInDb(uri_, seller_info) {
   console.log(error);
 }
 }
+
 
 //RETRIEVE ORDERS, INPUT: seller_id
 //RETRIEVE ORDERS, OUTPUT: returns all orders with products sold by seller
@@ -378,6 +386,7 @@ async function getProductsFromDatabase() {
 }
 
 //BROWSE ITEMS 
+// API endpoints as functions
 app.get("/getAllProducts", (req, res) => {
   res.set({ "Access-Control-Allow-Origin": "*" });
 
@@ -439,6 +448,12 @@ app.delete('/deleteUser', function(req, res) {
     'Access-Control-Allow-Origin': '*'
   })
   deleteUsersFromDatabase(uri, req.body).then(response => {console.log(response); res.send(response)});
+
+app.post('/retrieveOrder', function(req, res) {
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  })
+  retrieveOrderInDb(uri, req.body).then(response => {console.log(response); res.send(response)});
 });
 
 app.listen(3001, () => console.log('Listening on port 3001...'));
