@@ -8,9 +8,9 @@ function ManageProfilePage() {
 
     let navigate = useNavigate();
     const location = useLocation();
-    const me = useUser();
+    const myAccount = useUser();
     
-    const currentUserInfo = location.state ? location.state : me;
+    const currentUserInfo = location.state ? location.state : myAccount;
     const [_id] = useState(currentUserInfo._id);
     const [full_name, setName] = useState(currentUserInfo.full_name);
     const [email, setEmail] = useState(currentUserInfo.email);
@@ -110,6 +110,7 @@ function ManageProfilePage() {
                             <Form.Select value={account_type} onChange={(e) => setAccountType(e.target.value)}>
                                 <option>Customer</option>
                                 <option>Seller</option>
+                                {myAccount.account_type === 'Admin' && <option>Admin</option>}
                              </Form.Select>
                         </Form.Group>
                        
